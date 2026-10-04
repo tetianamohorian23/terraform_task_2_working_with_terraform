@@ -1,6 +1,4 @@
 .terraform/
 *.tfstate
-*.tfstate.*
-crash.log
-crash.*.log
-tfplan
+*.tfstate.backup
+blob.zip
