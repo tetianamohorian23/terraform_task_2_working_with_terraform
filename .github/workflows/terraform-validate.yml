@@ -25,13 +25,16 @@ jobs:
       with:
         terraform_version: 1.8.4
 
-    - name: Azure Login
-      uses: azure/login@v2
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    - name: Check Azure secret
+      shell: bash
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      run: |
+        if [ -z "$AZURE_CREDENTIALS" ]; then
+          echo "AZURE_CREDENTIALS is NOT available"
+          exit 1
+        fi
+        echo "AZURE_CREDENTIALS is available"
 
     - name: Check variables.tf
       run: |
