@@ -34,7 +34,7 @@ jobs:
           echo "AZURE_CREDENTIALS is NOT available"
           exit 1
         fi
-        echo "AZURE_CREDENTIALS is available"
+        echo "AZURE_CREDENTIALS is available" 
 
     - name: Check variables.tf
       run: |
