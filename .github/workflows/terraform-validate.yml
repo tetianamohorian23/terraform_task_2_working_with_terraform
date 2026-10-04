@@ -11,6 +11,10 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   terraform_validate:
     name: "Format and Validate Code"
@@ -28,7 +32,9 @@ jobs:
     - name: Azure Login
       uses: azure/login@v2
       with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        client-id: dc39fdda-301e-4b3d-b7e2-6ac06f8bd3e0
+        tenant-id: 465a4e81-6634-4e35-98bd-5396553c5fef
+        subscription-id: ce85d024-a010-4a1f-9047-f9509cede306
 
     - name: Check variables.tf
       run: |
